@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Smart Communication Aid</title>
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#b29ee0,#fbc2eb,#ca2fc7,#ffdde1);
+  color:#222;
+  overflow-x:hidden;
+}
+header{
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(90deg,#c971b5,#fecfef);
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.logo{
+  font-weight:900;
+  font-size:24px;
+  color:#fff;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}
+nav a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:600;
+  transition:.3s;
+}
+nav a:hover{color:#6a1b9a}
+nav a.active{
+  color:#ffeb3b;
+  font-weight:700;
+  text-decoration:underline;
+}
+.hero{
+  text-align:center;
+  padding:120px 20px;
+  background:url("https://wecapable.com/tools/text-to-sign-language-converter/text-to-sign-language-converter-wecapable.jpg") no-repeat center center/cover;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.4);
+}
+.hero h1,.hero p{
+  position:relative;
+  z-index:1;
+}
+.hero h1{font-size:46px;margin:0;animation:slideIn 2s ease}
+.hero p{font-size:20px;margin-top:12px;animation:fadeIn 3s ease}
+@keyframes slideIn{
+  from{transform:translateY(-50px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+.section{padding:70px 20px;text-align:center}
+.section h2{
+  font-size:30px;
+  color:#6a1b9a;
+  margin-bottom:18px;
+  animation:fadeIn 2s ease-in-out;
+}
+.section p{
+  max-width:720px;
+  margin:0 auto;
+  color:#333;
+  line-height:1.7;
+  font-size:18px;
+}
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:center;
+  margin-top:40px;
+}
+.card{
+  background:linear-gradient(135deg,#d897cc,#fecfef);
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+  width:260px;
+  transition:.4s;
+  animation:float 3s ease-in-out infinite;
+}
+.card:hover{transform:translateY(-8px) rotate(2deg)}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.register{
+  padding:70px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#d79cd1,#9e23a2);
+}
+.register h2{color:#fff}
+.register p{color:#fff;font-size:18px}
+.register form{
+  margin-top:24px;
+  max-width:420px;
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+input,button,textarea,select{
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+}
+input,textarea,select{border:1px solid #ccc}
+button{
+  background:#6a1b9a;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{background:#4a148c}
+footer{
+  padding:24px;
+  text-align:center;
+  background:linear-gradient(90deg,#ffdde1,#f5c3fa);
+  color:#333;
+  margin-top:50px;
+}
+img.illus{
+  width:100%;
+  max-width:260px;
+  border-radius:18px;
+  box-shadow:0 8px 16px rgba(0,0,0,0.15);
+  transition:.3s;
+  animation:zoomIn 2s ease;
+}
+img.illus:hover{transform:scale(1.08)}
+@keyframes zoomIn{
+  from{transform:scale(0.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.feature-box{
+  margin-top:20px;
+  text-align:left;
+  background:rgba(255,255,255,0.9);
+  padding:20px;
+  border-radius:12px;
+}
+.feature-box textarea{
+  width:100%;
+  resize:none;
+}
+.feature-box button, .feature-box select{
+  margin-top:12px;
+}
+.result{
+  margin-top:12px;
+  background:#f1f1f1;
+  padding:12px;
+  border-radius:8px;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Smart Communication Aid</div>
+  <nav>
+    <a href="#aim-old" class="active">Aim</a>
+    <a href="#vision-old">Vision</a>
+    <a href="#mission-old">Mission</a>
+    <a href="#smart-summaries">Smart Summaries</a>
+    <a href="#dialect-support">Dialect Support</a>
+    <a href="#emergency-govt">Emergency & Govt. Service</a>
+    <a href="#community-support">Community & Support</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Smart Communication Aid</h1>
+  <p>Bright, inclusive, and intelligent support for everyone</p>
+</section>
+
+<!-- Old Aim Section -->
+<section id="aim-old" class="section">
+  <h2>Our Aim</h2>
+  <p> The primary aim of SmartAssist is to break communication barriers by providing intelligent, AI-powered support for daily life. This includes helping people with different language preferences, abilities, or literacy levels access information, connect with others, and interact with digital services seamlessly.</p>
+  <div class="cards">
+    <div class="card"><img src="https://signpedia.com/wp-content/uploads/2021/10/Deaf-Interpreter.png" alt="aim pic" class="illus"><p>Breaking barriers in communication</p></div>
+    <div class="card"><img src="https://cdn.mos.cms.futurecdn.net/BQgWtokYvfFHYYHhSYqrU6-1200-80.jpg" alt="aim pic" class="illus"><p>Accessible support for everyone</p></div>
+  </div>
+</section>
+
+<!-- Old Vision Section -->
+<section id="vision-old" class="section">
+  <h2>Our Vision</h2>
+  <p>The Smart Communication Aid envisions a future where technology unites people rather than separates them. We aspire to create a world in which AI-driven communication aids are available to everyone, everywhere, fostering inclusivity, equality, and understanding.</p>
+  <div class="cards">
+    <div class="card"><img src="https://kpi.ua/files/styles/story/public/images-story/deaf_translator.jpg?itok=dHWf9d40" class="illus"><p>Inclusive technology for all</p></div>
+    <div class="card"><img src="https://i.ytimg.com/vi/2TuTNA1K5JQ/maxresdefault.jpg" alt="vision pic" class="illus"><p>Connecting communities globally</p></div>
+  </div>
+</section>
+
+<!-- Old Mission Section -->
+<section id="mission-old" class="section">
+  <h2>Our Mission</h2>
+  <p>The mission of Smart Communication is to create an inclusive, AI-powered communication platform that empowers individuals and communities by breaking language and accessibility barriers. It integrates smart assistance into daily life through features such as multilingual support, AI-driven summaries, emergency services, and guidance tools. By fostering a connected ecosystem, SmartAssist enables collaboration, knowledge sharing, and continuous innovation for everyone.</p>
+  <div class="cards">
+    <div class="card"><img src="https://static.vecteezy.com/system/resources/previews/005/567/686/original/translator-icon-logo-two-squares-and-arrow-translate-symbol-isolated-on-white-background-language-translation-icon-free-vector.jpg" alt="mission pic" class="illus"><p>Trusted AI companion</p></div>
+    <div class="card"><img src="https://alsuntranslation-riyadh.com/wp-content/uploads/2024/01/sign-language-expressions-set-with-people-talking-flat-illustration_1284-56084.webp" alt="mission pic" class="illus"><p>Empowering through innovation</p></div>
+  </div>
+</section>
+
+<!-- Smart Summaries -->
+<section id="smart-summaries" class="section">
+  <h2>Context-Aware Smart Summaries</h2>
+  <p>AI generates concise summaries of conversations to reduce information overload.</p>
+  <div class="feature-box">
+    <textarea id="conversation" rows="5" placeholder="Paste conversation text here..."></textarea>
+    <button onclick="generateSummary()">Generate Summary</button>
+    <div id="summaryResult" class="result"></div>
+  </div>
+</section>
+
+<!-- Dialect Support -->
+<section id="dialect-support" class="section">
+  <h2>Multilingual & Dialect Support</h2>
+  <p>Real-time transcription and speech synthesis in Indian languages with code-switching (e.g., Hinglish, Tanglish).</p>
+  <div class="feature-box">
+    <textarea id="textInput" rows="4" placeholder="Enter text here..."></textarea>
+    <select id="languageSelect">
+      <option value="Hindi">Hindi</option>
+      <option value="Tamil">Tamil</option>
+      <option value="Telugu">Telugu</option>
+      <option value="Hinglish">Hinglish</option>
+      <option value="Tanglish">Tanglish</option>
+    </select>
+    <button onclick="translateText()">Translate</button>
+    <div id="translationResult" class="result"></div>
+  </div>
+</section>
+
+<!-- Emergency & Govt. Service -->
+<section id="emergency-govt" class="section">
+  <h2>Emergency & Govt. Service Integration</h2>
+  <p>Direct integration with helplines (100, 108), banking IVRs, and telemedicine services.</p>
+  <div class="feature-box">
+    <button onclick="showHelpline(100)">Call Police (100)</button>
+    <button onclick="showHelpline(108)">Call Ambulance (108)</button>
+    <div id="helplineResult" class="result"></div>
+  </div>
+</section>
+
+<!-- Community & Support -->
+<section id="community-support" class="section">
+  <h2>Community & Support Features</h2>
+  <p>Built-in sign language learning, crowdsourced slang dictionary, and peer support.</p>
+  <div class="feature-box">
+    <textarea id="peerMessage" rows="3" placeholder="Send a peer message..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+    <div id="peerResult" class="result"></div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Smart Communication Aid • Designed with colors, joy, and inclusivity
+</footer>
+
+<script>
+function generateSummary(){
+  const text=document.getElementById("conversation").value;
+  if(text.trim()===""){
+    document.getElementById("summaryResult").innerText="Please enter conversation text.";
+    return;
+  }
+  const sentences=text.split('.').filter(s=>s.trim().length>0);
+  const summary=sentences.slice(0,2).join('. ')+"...";
+  document.getElementById("summaryResult").innerText=summary;
+}
+
+function translateText(){
+  const text=document.getElementById("textInput").value;
+  const lang=document.getElementById("languageSelect").value;
+  if(text.trim()===""){
+    document.getElementById("translationResult").innerText="Please enter text.";
+    return;
+  }
+  document.getElementById("translationResult").innerText=`[${lang} translation simulated]: ${text}`;
+}
+
+function showHelpline(number){
+  let msg="";
+  if(number===100) msg="Police helpline (100) dialed. Nearby stations will be alerted.";
+  else if(number===108) msg="Ambulance/Medical helpline (108) dialed. Emergency services will respond.";
+  document.getElementById("helplineResult").innerText=msg;
+}
+
+function sendMessage(){
+  const msg=document.getElementById("peerMessage").value;
+  if(msg.trim()===""){
+    document.getElementById("peerResult").innerText="Enter a message.";
+    return;
+  }
+  document.getElementById("peerResult").innerText="Message sent to community: "+msg;
+  document.getElementById("peerMessage").value="";
+}
+</script>
+</body>
+</html>
