@@ -1,7 +1,8 @@
-# SIH2_25
-SIH HACKATHON_25
+SIH2_25
+
 SIH HACKATHON_25
 Smart Communication Aid 🗣️🤝
+
 Problem Statement
 
 Communication barriers—due to language, dialect, hearing impairments, or accessibility challenges—make it difficult for people to interact seamlessly with society, digital services, and emergency systems. This results in delayed support, exclusion, and lack of inclusivity.
@@ -35,8 +36,6 @@ Community Support – Peer-to-peer messaging, sign language resources, and crowd
 
 Built With 🛠️
 
-This project is built using:
-
 HTML5
 
 CSS3 (with animations, gradients, responsive design)
@@ -52,10 +51,10 @@ To run the project locally:
 git clone https://github.com/your-username/Smart-Communication-Aid.git
 cd Smart-Communication-Aid
 
-
 Open index.html in your browser to get started.
 
 Usage 👩‍💻👨‍💻
+
 Patients / General Users
 
 Paste conversations → get summaries.
