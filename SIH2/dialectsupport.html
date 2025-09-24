@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Communication Aid - Dialect Support</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #880e4f;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #ffc1e3, #ffb6c1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 24px;
+      color: #880e4f;
+      animation: pulse 2s infinite;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #880e4f;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a.active {
+      color: #ff1493;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    nav a:hover {
+      color: #ff69b4;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.25em;
+      color: #d81b60;
+    }
+    p.description {
+      max-width: 700px;
+      font-size: 1.2rem;
+      text-align: center;
+      margin: 15px auto 40px auto;
+      color: #5e1a40;
+      line-height: 1.6;
+    }
+    section {
+      margin: 40px 0;
+      text-align: left;
+    }
+    h2 {
+      color: #c2185b;
+      margin-bottom: 10px;
+    }
+    select, textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 2px solid #f8bbd0;
+      color: #880e4f;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+    button {
+      margin: 10px;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ad1457;
+    }
+    .ai-box {
+      margin-top: 20px;
+      max-width: 700px;
+      background: linear-gradient(135deg, #f8bbd0, #ffeff7);
+      border-radius: 20px 20px 20px 0;
+      padding: 20px;
+      font-size: 1.15rem;
+      color: #4a145b;
+      text-align: left;
+      box-shadow: 0 6px 15px rgba(216, 27, 96, 0.3);
+      position: relative;
+      white-space: pre-wrap;
+      min-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Smart Communication Aid</div>
+    <nav>
+          <a href="index.html">Home</a>
+    <a href="smartsummaries.html" class="active">Smart Summaries</a>
+    <a href="dialectsupport.html">Dialect Support</a>
+<a href="dialectsupport.html">Emergency & Govt. Service</a>
+    <a href="community&support.html">Community & Support</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Dialect Support</h1>
+    <p class="description">
+      Our <b>Multilingual & Dialect Support</b> feature bridges communication gaps by enabling real-time
+      speech-to-text transcription and text-to-speech synthesis across Indian languages.
+      It even supports <b>code-switching</b> such as <i>Hinglish</i> (Hindi + English) and <i>Tanglish</i> (Tamil + English),
+      ensuring smooth communication in diverse communities.
+    </p>
+
+    <section>
+      <h2>Choose Your Language</h2>
+      <p>Select your preferred language or dialect to begin the conversation.</p>
+      <select id="languageSelect">
+        <option value="hi-IN">Hindi</option>
+        <option value="ta-IN">Tamil</option>
+        <option value="en-IN">English (Indian)</option>
+        <option value="mixed">Hinglish / Tanglish</option>
+      </select>
+    </section>
+
+    <section>
+      <h2>Real-Time Speech Recognition</h2>
+      <p>Click <b>Start Speech</b> to begin live transcription of your spoken words.</p>
+      <button onclick="startRecognition()">Start Speech</button>
+      <button onclick="stopRecognition()">Stop Speech</button>
+    </section>
+
+    <section>
+      <h2>Speech Synthesis</h2>
+      <p>Convert your transcript into natural-sounding speech in the chosen language.</p>
+      <button onclick="speakOutput()">Play Output</button>
+    </section>
+
+    <section>
+      <h2>Live Transcript</h2>
+      <p>The transcribed text will appear below in real-time:</p>
+      <div id="transcriptBox" class="ai-box" style="display:none;"></div>
+    </section>
+  </main>
+
+  <script>
+    let recognition;
+    let transcriptText = "";
+
+    function startRecognition() {
+      const lang = document.getElementById("languageSelect").value;
+      window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      recognition = new SpeechRecognition();
+      recognition.lang = (lang === "mixed") ? "en-IN" : lang;
+      recognition.interimResults = true;
+      recognition.continuous = true;
+
+      recognition.onresult = (event) => {
+        transcriptText = Array.from(event.results)
+          .map(r => r[0].transcript)
+          .join(" ");
+        const box = document.getElementById("transcriptBox");
+        box.style.display = "block";
+        box.textContent = transcriptText;
+      };
+
+      recognition.start();
+    }
+
+    function stopRecognition() {
+      if (recognition) recognition.stop();
+    }
+
+    function speakOutput() {
+      const lang = document.getElementById("languageSelect").value;
+      const msg = new SpeechSynthesisUtterance(transcriptText || "No speech detected yet.");
+      msg.lang = (lang === "mixed") ? "en-IN" : lang;
+      msg.rate = 1;
+      msg.pitch = 1;
+      window.speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>
